@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4">Students List</h2>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.f_name }}</td>
+                        <td>{{ student.l_name }}</td>
+                        <td>{{ student.age }}</td>
+                        <td>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'delete_student' student.id %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'update' student.id %}" class="btn btn-success">Update</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'create' %}" class="btn btn-success">Create New Student</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}
